@@ -1,0 +1,257 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx,tikz}
+\usepackage{fancyhdr,enumerate}
+\usepackage{color,soul}
+\usepackage{marginnote}
+
+\setlength{\headheight}{28pt}
+\usepackage[top=1.0in, bottom=0.5in, left=0.75in, right=2.5in]{geometry}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH3004 HW \#4\\ Fall 2017}
+\rhead{\thepage}
+\chead{Rob Ireton}
+
+\title{Homework 4}
+
+\newcommand{\zee}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\arr}{\mathbb{R}}
+\newcommand{\such}{\text{ s.t. }}
+
+
+\begin{document}
+
+\begin{itemize}
+\item[\textbf{ 1.1.9.}] Let $a\in\zee$. Prove that $a^3$ must be of the form $9k$, $9k+1$, or $9k+8$ for some $k\in\zee$.
+
+\begin{proof}
+  Since $a, 3 \in \zee$, by the Division Algorithm, $\exists q, r \in \zee \such a=3q+r$ with $0\leq r <3$.
+  This lets us express $a$ in three ways, corresponding to $r=0, 1, 2$: $3q$, $3q+1$, and $3q+2$, which gives three ways of expressing $a^3$:
+  \begin{enumerate}
+    \item ${(3q)}^3 = 9q^3$.
+    \item ${(3q+1)}^3 = 27q^3+27q^2+9q+1 = 9(9q^3+9q^2+q)+1$.
+    \item ${(3q+2)}^3 = 27q^3+54q^2+36q+8 = 9(9q^3+6q^2+4q)+8$.
+  \end{enumerate}
+  Since $q^3, 9q^3+9q^2+q, 9q^3+6q^2+4q \in \zee$, $a^3$ must be of the form $9k$, $9k+1$, or $9k+8$ for some $k\in\zee$.
+\end{proof}
+
+\item[\textbf{ 3.1.24.}] Define a new addition and multiplication on $\zee$ by
+
+\[a\oplus b=a+b-1 \text{ and } a\odot b=ab-(a+b)+2.\]
+
+Prove that $\zee$ with these operations is an integral domain.
+
+\begin{proof}
+  Let $a, b, c \in \zee$.
+  \begin{enumerate}
+    \item $a \oplus b = a+b-1$. $a+b-1 \in \zee$.
+    \item $a \oplus (b \oplus c) = a \oplus (b+c-1) = a+b+c-1-1 = (a+b-1)+c-1 = (a \oplus b) \oplus c$.
+    \item $a \oplus b = a+b-1 = b+a-1 = b \oplus a$.
+    \item Let $0_R = 1$. $a \oplus 0_R = a+1-1 = a$.
+    \item The equation $a \oplus x = 0_R$ --- i.e. $a+x-1=1$ has solution $x=2-a$.
+    \item $a \odot b = ab-(a+b)+2$. $ab-(a+b)+2 \in \zee$.
+    \item $a \odot (b \odot c) = a \odot (bc-(b+c)+2)$ \\
+          $= a(bc-(b+c)+2)-(a+bc-(b+c)+2)+2$ \\
+          $= abc-ab-ac+2a-a-bc+b+c-2+2$ \\
+          $= abc-ab-ac-bc+a+b+c$ \\
+          $= (ab-(a+b)+2)c-((ab-(a+b)+2)+c)+2$ \\
+          $= (a \odot b) \odot c$.
+    \item $a \odot (b \oplus c) = a \odot (b+c-1)$ \\
+          $= a(b+c-1)-(a+b+c-1)+2$ \\
+          $= ab+ac-a-a-b-c+1+2$ \\
+          $= ab-(a+b)+2 + ac-(a+c)+2 -1$ \\
+          $= (a \odot b) + (a \odot c) - 1$ \\
+          $= (a \odot b) \oplus (a \odot c)$.
+          \par
+          $(a \oplus b) \odot c = (a+b-1) \odot c $ \\
+          $= (a+b-1)c - ((a+b-1)+c) + 2$ \\
+          $= ac+bc-c-a-b+1-c+2$ \\
+          $= (ac-(a+c)+2) + (bc-(b+c)+2) -1$ \\
+          $= (a \odot c) + (b \odot c) - 1$ \\
+          $= (a \odot c) \oplus (b \odot c)$.
+    \item $a \odot b = ab-(a+b)+2 = ba-(b+a)+2 = b \odot a$.
+    \item Let $1_R = 2$. $a \odot 1_R = 2a-(a+2)+2 = a$.
+    \item Observe that $0_R \neq 1_R$ --- $1 \neq 2$. If $a \odot b = 0_R$, then $ab-(a+b)+2=1$.
+          So $ab-a-b+1 = 0 = (a-1)(b-1)$. For the equation to be true, $a=1$ or $b=1$.
+          That is, $a=0_R$ or $b=0_R$.
+  \end{enumerate}
+  Since all the elements of $\zee$ with the operations specified satisfy all the axioms required, it is an integral domain.
+\end{proof}
+
+\item[\textbf{ 3.2.8.}] Let $R$ be a ring and $b\in R$. Prove that the set $T=\{rb; r\in R\}$ is a subring of $R$.
+
+\begin{proof}
+Let $x, y \in T$, then $\exists r_x, r_y \in R \such x=r_x b, y=r_y b$.
+\par
+$x-y = r_x b - r_y b = (r_x - r_y)b$.
+Subtraction is defined for elements of a ring, so $(r_x - r_y) \in R$ and $(r_x - r_y)b \in T$.
+So, $T$ is closed under subtraction.
+\par
+$xy = r_x b r_y b = (r_x b r_y) b$.
+Rings are closed under multiplication, so $r_x b r_y \in R$ and $(r_x b r_y) b \in T$.
+So, $T$ is closed under multiplication.
+\par
+Since $T$ is a subset of $R$, has the same operations, and is closed under subtraction and multiplication, the Subring Test tells us that $T$ is a subring of $R$.
+\end{proof}
+
+
+\item[\textbf{ 3.2.13.}] Let $S$ and $T$ be subrings of a ring $R$.
+
+\begin{enumerate}[(a.)]
+\item Prove or disprove: $S\cap T$ is a subring of $R$.
+
+\begin{proof}
+Let $a,b\in S\cap T$.
+So, $a,b\in S$ and $a,b\in T$.
+$S$ and $T$ are both rings, so, $a-b \in S$ and $a-b \in T$, so $a-b \in S \cap T$.
+Also, since $S$ and $T$ are rings, $ab \in S$ and $ab \in T$, so $ab \in S \cap T$.
+\par
+Since $S \cap T$ is closed under subtraction and multiplication, $S \cap T$ is a subring of $R$. (Subring Test)
+\end{proof}
+
+\item Prove or disprove: $S\cup T$ is a subring of $R$.
+
+\textit{Counterexample.}
+Let $R = \zee$, $S = \{2k; k \in {\zee}\}$, $T = \{3k; k \in {\zee}\}$.
+\par
+Observe that $3 \in T$ and $2 \in S$, but $3-2=1 \not\in S$, $\not\in T$.
+So, $2, 3 \in S \cup T$, but $3-2 \not\in S \cup T$.
+The Subring Test says that if $S \cup T$ is not closed under subtraction, it is not a subring of $R$.{$\square$}
+\end{enumerate}
+
+\item[\textbf{ 3.2.20.}] Let $R$ and $S$ be nonzero rings. Prove that $R\times S$ contains zero divisors. (Note: ``nonzero ring'' means a ring with at least one nonzero element.)
+
+\begin{proof}
+Observe that $0_{R\times S} = (0_R, 0_S)$.
+Let $a \in R\times S = (r, 0_S)$ where $r \in R, r\neq 0_R$ and $b \in R\times S = (0_R, s)$ where $s \in S, s\neq 0_S$.
+Observe that neither $a$ nor $b$ equals $0_{R\times S}$, but $a \odot b = (r, 0_S) \odot (0_R, s) = (0_R, 0_S) = 0_{R\times S}$.
+By definition, $R\times S$ contains zero divisors: $(r, 0_S)$ and $(0_R, s)$.
+\end{proof}
+
+\item[\textbf{ 3.2.22.}] Prove:
+
+\begin{enumerate}[(a.)]
+\item If $ab$ is a zero divisor in a ring $R$, then $a$ or $b$ is a zero divisor.
+\begin{proof}
+Since $ab$ is a zero divisor in a ring $R$, then $ab \neq 0_R$ and $\exists c \in R$, $c \neq 0_R \such (ab)c = 0_R$ or $c(ab) = 0_R$.
+Multiplication of ring elements is associative, so $a(bc) = 0_R$ or $(ca)b = 0_R$.
+$ab \neq 0_R$, so $a \neq 0_R$ and $b \neq 0_R$.
+\par
+So, $a, bc, ca, b \neq 0_R$, but either $a(bc) = 0_R$, making $a$ a zero divisor, or $(ca)b = 0_R$, making $b$ a zero divisor.
+\end{proof}
+
+
+\item If $a$ or $b$ is a zero divisor in a commutative ring $R$ and $ab\ne0_R$, then $ab$ is a zero divisor.
+\begin{proof}
+If $a$ is a zero divisor in commutative ring $R$, then $a \neq 0_R$ and $\exists c \in R$, $c \neq 0_R \such ac = 0_R$.
+$ab \neq 0_R$, so $b \neq 0_R$, so we can multiply $ac = 0_R$ by $b$ to get $acb = {0_R}\cdot b = 0_R$.
+$R$ is commutative and associative, so $(ab)c = 0_R$, making $ab$ a zero divisor by definition.
+\par
+If $b$ is a zero divisor in commutative ring $R$, then $b \neq 0_R$ and $\exists c \in R$, $c \neq 0_R \such bc = 0_R$.
+$ab \neq 0_R$, so $a \neq 0_R$, so we can multiply $bc = 0_R$ by $a$ to get $bca = {0_R}\cdot a = 0_R$.
+$R$ is commutative and associative, so $(ab)c = 0_R$, making $ab$ a zero divisor by definition.
+
+
+\end{proof}
+
+\end{enumerate}
+
+\item[\textbf{ 3.3.8.}] Let $\Q(\sqrt{2})=\{r+s\sqrt{2};r,s\in{\Q}\}$. Prove that the function $f: \Q(\sqrt{2}) \to \Q(\sqrt{2})$ given by \[f(a+b\sqrt{2})=a-b\sqrt{2}\] is an isomorphism. (You may assume that $\Q(\sqrt{2})$ is a commutative ring with identity.)
+
+\begin{proof}
+  Let $a, b \in \Q(\sqrt{2})$. Then $\exists r_a, r_b, s_a, s_b \in \Q \such a=r_a+s_a\sqrt{2}$ and $b=r_b+s_b\sqrt{2}$. Observe the following:
+  \begin{itemize}
+    \item[\textbullet] Take $f (a)=f (b)$. Then $ (r_a-s_a\sqrt{2}) = (r_b-s_b\sqrt{2})$; $r_a=r_b$ and $s_a=s_b$. Which means that $a=b$.\\$f (a)=f (b) {\implies}a=b$, so $f$ is injective.
+    \item[\textbullet] Take $b$ to be in the range of $f$. Then ${\exists}p \in\Q{\such}p= -s_b$ and $f (r_b+p\sqrt{2}) = r_b-p\sqrt{2} = r_b+s_b\sqrt{2} = b$.\\$r_b+p\sqrt{2} \in\Q (\sqrt{2})$ so $f$ is surjective.
+    \item[\textbullet] $f (a+b) = f ((r_a+s_a\sqrt{2})+(r_b+s_b\sqrt{2})) = f ((r_a+r_b)+(s_a+s_b)\sqrt{2}) = (r_a+r_b)-(s_a+s_b)\sqrt{2} = (r_a-s_a\sqrt{2})+(r_b-s_b\sqrt{2}) = f(r_a+s_a\sqrt{2}) + f (r_b+s_b\sqrt{2}) = f (a) + f (b)$.\\$f$ preserves addition.
+    \item[\textbullet] $f (ab) = f ((r_a+s_a\sqrt{2}) (r_b+s_b\sqrt{2})) = f ((r_a r_b + 2s_a s_b) + (r_a s_b + r_b s_a)\sqrt{2}) = (r_a r_b + 2s_a s_b)- (r_a s_b + r_b s_a)\sqrt{2} = (r_a-s_a\sqrt{2}) (r_b-s_b\sqrt{2}) = f (r_a+s_a\sqrt{2}) f (r_b+s_b\sqrt{2}) = f (a) f (b)$.\\$f$ preserves multiplication.
+  \end{itemize}
+  Since $f$ is injective, surjective, and preserves addition and multiplication, it is, by definition, an isomorphism.
+\end{proof}
+
+\item[\textbf{ 3.3.27.}] Let $R, S, T$ be rings.
+
+\begin{enumerate}[(a.)]
+\item Prove that if $f: S\to T$ and $g: R\to S$ are homomorphisms, then $f\circ g: R\to T$ is also a homomorphism.
+
+\begin{proof}
+  Let $a,b \in R$.
+  \begin{align*}
+    f \circ g(a+b) =& f(g(a+b)) & \text{ definition of composition}\\
+    =& f(g(a)+g(b)) & g\text{ is a homomorphism}\\
+    =& f(g(a)) + f(g(b)) & f\text{ is a homomorphism}\\
+    =& f\circ g(a)+f\circ g(b) & \text{ definition of composition}
+  \end{align*}
+  \begin{align*}
+    f \circ g(ab) =& f(g(ab)) & \text{ definition of composition}\\
+    =& f(g(a)g(b)) & g\text{ is a homomorphism}\\
+    =& f(g(a)) f(g(b)) & f\text{ is a homomorphism}\\
+    =& f\circ g(a) f\circ g(b) & \text{ definition of composition}
+  \end{align*}
+  \par
+  Since $f\circ g$ preserves addition and multiplication, it is, by definition, a homomorphism.
+\end{proof}
+
+\item Prove that furthermore, if $f$ and $g$ are isomorphisms then so is $f\circ g$.
+
+\begin{proof}
+  Let $t\in T$.
+  Because $f$ is surjective, $\exists s\in S$ such that $f(s)=t$.
+  Because $g$ is surjective, $\exists r\in R$ such that $g(r)=s$.
+  So, $\forall t\in T$, $\exists r\in R$ such that ${f\circ g}(r)=t$ --- \textsc{iow}, $f\circ g$ is surjective.
+  \par
+  Let $r_1, r_2 \in R$ such that $f(g(r_1)) = f(g(r_2))$.
+  Because $f$ is injective, $g(r_1) = (r_2)$.
+  Because $g$ is injective, $r_1 = r_2$.
+  Since ${f\circ g}(r_1) = {f\circ g}(r_2) \implies r_1 = r_2$, $f\circ g$ is injective.
+  \par
+  We know from part (a.) that $f\circ g$ is a homomorphism.
+  Since it is also bijective, we can conclude that it is also an isomorphism.
+\end{proof}
+
+\end{enumerate}
+
+\item[\textbf{ 3.3.33a.}] Let $T$ be the ring of functions $\arr\to\arr$, in other words \\
+$T=\{f; f:\arr\to{\arr}\}$.
+Define $\Theta:T{\to}\arr$ by ${\Theta} (f)=f (5)$. Prove that $\Theta$ is a surjective homomorphism, but not an isomorphism.
+
+\begin{proof}
+  \dots
+\end{proof}
+
+\item[\textbf{ 4.1.7.}] Prove that if $R$ is commutative, then $R[x]$ is also commutative.
+
+\begin{proof}
+  Let $f(x), g(x)\in R[x]$ and let $n={\max}\{\deg(f), \deg(g)\}$.
+  Then $\exists a_0,\dotsc, a_n,b_0\dotsc,b_n\in R$ such that $f(x) = a_0 + a_1x + \dotsb + {a_n}x^n$ and $g(x) = b_0 + b_1x + \dotsb + {b_n}x^n$.
+  Then:
+  \[
+    f(x) g(x) = \sum_{i=0}^{2n}\left( \sum_{j=0}^{i} {a_j}b_{i-j}\right) x^i\text{.}
+  \]
+  Because $R$ is commutative, this is the same as:
+  \begin{align*}
+    f(x) g(x) =& \sum_{i=0}^{2n}\left( \sum_{j=0}^{i} b_{i-j}{a_j}\right) x^i\\
+    =& \left( \sum_{i=0}^{n} b_{i} x^i \right) \left( \sum_{i=0}^{n} a_{i} x^i \right)\\
+    =& g(x) f(x)\text{.}
+  \end{align*}
+  So, $R[x]$ is commutative.
+\end{proof}
+
+\item[\textbf{ 4.1.13.}] Let $R$ be a commutative ring. Prove: If $a_n\ne0_R$ and $f (x)=a_0+a_1x+a_2x^2+\dotsb+{a_n}x^n$ is a zero divisor in $R[x]$, then $a_n$ is a zero divisor in $R$.
+
+\begin{proof}
+  Since $f(x)$ is a zero divisor in $R[x]$, $f(x)$ nonzero and $\exists g(x) \in R[x]$ such that $g(x)$ nonzero and:
+  \[
+    f(x) g(x) = \left(\sum_{i=0}^{n} {a_i}{x^i}\right) \left(\sum_{j=0}^{m} {b_j}{x^j}\right) = 0_R
+  \]
+  where $n=\deg(f)$ and $m=\deg(g)$.
+  From this, observe that the leading term of the product will look like $a{_n}b{_k}x^{n+m}$ where $k$ depends on $n$ and $m$.*
+  \marginnote{* \footnotesize \textit{margin too small to contain proof}\dots}
+  $a_n\ne0_R$ and $b_k\neq0_R$, so $a_n$ must be a zero divisor in $R$.
+\end{proof}
+
+\end{itemize}
+
+\end{document}

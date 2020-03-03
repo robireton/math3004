@@ -1,0 +1,184 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx,tikz}
+\usepackage{fancyhdr}
+\usepackage{color,soul}
+\usepackage[top=1.0in, bottom=0.5in, left=0.75in, right=2.5in]{geometry}
+\setlength{\headheight}{28pt}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH3004 HW \#2\\ Fall 2017}
+\rhead{\thepage}
+\chead{Rob Ireton}
+\title{Homework 2}
+
+\newcommand{\zee}{\mathbb{Z}}
+\newcommand{\such}{\text{ s.t. }}
+\newcommand{\abs}[1]{{\lvert}#1{\rvert}}
+\begin{document}
+
+\begin{itemize}
+\item[\textbf{1.2.24.}] Let $a,b,c\in\zee$. Prove that the equation $ax+by=c$ has integer solutions $\iff$ $\gcd(a,b)|c$.
+
+\begin{proof}
+  If the equation $ax+by=c$ has integer solutions, then $\exists x, y \in \zee \such ax+by=c$.
+  By definition, $\gcd(a, b)$ divides both $a$ and $b$, so $\exists k_1, k_2 \in \zee \such a=k_1 \gcd(a,b)$ and $b=k_2 \gcd(a,b)$.
+  Using these representations of $a$ and $b$ in $ax+by=c$ gives $k_1 \gcd(a,b) x + k_2 \gcd(a,b) y = c$.
+  Rearranged, this is $(k_1 x + k_2 y) \gcd(a,b) = c$.
+  Since $(k_1 x + k_2 y) \in \zee$, $\gcd(a,b)|c$.
+  \par
+  If $\gcd(a,b)|c$, then, from Theorem 1.2, $\exists u,v \in \zee$ such that $\gcd(a,b) = a u + b v$.
+  From the definition of \textit{divides}, $\exists n \in \zee \such c = n \gcd(a, b) = n (a u + b v)$.
+  Then $ax+by=c$ has integer solutions, namely $x = n u$ and $y = n v$.
+\end{proof}
+
+
+\item[\textbf{1.3.10.}] Let $p\in\zee-\{0,1,-1\}$. Prove that $p$ is prime $\iff$ $\forall a\in\zee$ either $\gcd(a,p)=1$ or $p|a$.
+\begin{proof}
+Let $P$ be the statement \textit{$p$ is prime}. Let $Q$ be the statement \textit{$\forall a\in\zee$ either $\gcd(a,p)=1$ or $p|a$}.
+\begin{enumerate}
+\item $P \implies Q$ \textit{via} $\neg Q \implies \neg P$
+  \par
+  Let $a\in\zee\such\gcd(a,p)>1$ and $p \nmid a$.
+  By definition, $\gcd(a,p)|p$ and $\gcd(a,p)|a$.
+  But $p \nmid a$ so $\gcd(a,p)\neq p$.
+  Also, $\gcd(a,p)>1$ so $\gcd(a,p)\neq 1$.
+  $\gcd(a,p)|p$, so $\exists k\in\zee\such p=k \gcd(a,p)$.
+  In $\zee$, \textsc{gcd}s are positive, so $p$ has a factor that isn't $\pm 1$ or $\pm p$.
+  By definition, $p$ is composite.
+  So, $\neg Q \implies \neg P$, which lets us conclude that $p$ is prime $\implies$ ($\forall a\in\zee$ either $\gcd(a,p)=1$ or $p|a$).
+
+\item $Q \implies P$ \textit{via} $\neg P \implies \neg Q$
+  \par
+  Let $p$ be composite.
+  Then, by the definition of composite and the Fundamental Theorem of Arithmetic, $p = p_1 \dotsb p_r$ where $p_1 \dotsc p_r$  are primes and $r \geq 2$.
+  In other words, $p$ is the product of at least two primes.
+  Now, let $a = \min(p_1, \dotsc,  p_r)$.
+  Then $\gcd(a,p) = \abs{a}$ and, since $p_1 \dotsc p_r$ are all prime, $\abs{a} > 1$.
+  Additionally, $\nexists n \in \zee \such a = n \cdot p_1 \dotsb p_r$, so $p \nmid a$.
+  $\neg P \implies \neg Q$ so $Q \implies P$.
+  In other words, we have ($\forall a\in\zee$ either $\gcd(a,p)=1$ or $p|a$) $\implies$ $p$ is prime.
+\end{enumerate}
+Having shown that $\neg Q \implies \neg P$ and $\neg P \implies \neg Q$, we can conclude $P \iff Q$.
+In other words, $p$ is prime $\iff$ $\forall a\in\zee$ either $\gcd(a,p)=1$ or $p|a$.
+\end{proof}
+
+
+\item[\textbf{1.3.18b.}] Let $a,b,c,d\in\zee$. Prove or disprove: $p$ is prime, $p|(a^2+b^2)$, and $p|(c^2+d^2)$ $\implies$ $p|(a^2+c^2)$.
+
+\textit{Claim.} The statement is \textbf{false}.
+\par
+\textit{Counterexample.}  Let $a=6$, $b=8$, $c=9$, $d=12$, and $p=5$.
+$5|(6^2 + 8^2) = 100$ and $5|(9^2 + 12^2) = 225$, but $5 \nmid (6^2 + 9^2) = 117$.
+$\square$
+
+
+\item[\textbf{1.3.19.}] Suppose that \[a=p_1^{r_1}p_2^{r_2}\dotsb p_k^{r_k}\] and \[b=p_1^{s_1}p_2^{s_2}\dotsb p_k^{s_k},\] where $p_1,\dotsc, p_k$ are distinct primes and each $r_i,s_i\ge0$. Prove that $a|b \iff \forall i,\,r_i\le s_i$.
+
+\begin{proof}
+Let $a,b\in\zee$ with $a\neq0$.
+\par
+If $a|b$, then $\exists n \in \zee \such b = a n$.
+By the Fundamental Theorem of Arithmetic, this $n$ must itself be a sum of non-negative integer powers of distinct primes:
+\[n=p_1^{t_1}p_2^{t_2}\dotsb p_j^{t_j}\]
+Let $m=\max(j,k)$, then the factors of $a, b, n$ can be written in terms of $m$ instead of $j, k$ with $r_i, s_i, t_i = 0$ as needed.
+Then:
+\[b = a n = p_1^{r_1 + t_1}p_2^{r_2 + t_2}\dotsb p_m^{r_m + t_m}\]
+So, we have $s_1 = r_1 + t_1$, $s_2 = r_2 + t_2$, \dots, $s_m = r_m + t_m$.
+In general, $s_i = r_i + t_i$ or $r_i = s_i - t_i$.
+Since $\forall i$, $t_i \geq 0$, we have $\forall i$, $r_i \le s_i$.
+\par
+If $\forall i,\,r_i\le s_i$, then $\exists c \in \zee \such c=p_1^{s_1-r_1}p_2^{s_2-r_2}\dotsb p_k^{s_k-r_k}$.
+Then, $p_1^{s_1}p_2^{s_2}\dotsb p_k^{s_k} = (p_1^{s_1-r_1}p_2^{s_2-r_2}\dotsb p_k^{s_k-r_k})(p_1^{r_1}p_2^{r_2}\dotsb p_k^{r_k})$.
+That is, $b=ca$.
+By definition, $a|b$.
+\end{proof}
+
+
+\item[\textbf{1.3.27.}] If $p>3$ is prime, prove that $p^2+2$ is composite.
+
+\begin{proof}
+Using the Division Algorithm, any integer, prime or not, can be written in one of three ways: $3k$, $3k+1$, or $3k+2$; where $k$ is an integer.
+A prime larger than $3$ will never look like $3k$ because that would make it a multiple of $3$, and so not prime.
+For a prime $p$ that looks like $3k+1$, $p^2+2$ is of the form ${(3k+1)}^2 + 2 = 9k^2+6k+3 = 3(3k^2+2k+1)$.
+This is three times some integer: a composite number.
+In the other case where prime $p$ looks like $3k+2$, $p^2+2$ is of the form ${(3k+2)}^2 + 2 = 9k^2+12k+6 = 3(3k^2+4k+2)$.
+This is also three times some integer, and so, also composite.
+\end{proof}
+
+
+\item[\textbf{2.1.6.}] Let $a,b\in\zee$. Prove or disprove: If $a\equiv b \mod n$ and $k|n$ then $a\equiv b \mod k$.
+
+\textit{Claim.} The statement is \textbf{true}.
+
+\begin{proof}
+  Assuming $a$ is congruent to $b$ ($\mod n$), we have from definitions that $n$ divides $a-b$ and that $\exists u_1 \in \zee \such (a-b) = u_1 n$.
+  Assuming $k|n$ we likewise have $\exists u_2 \in \zee \such n = u_2 k$.
+  Substituting $u_2 k$ for $n$ gives $(a-b) = u_1 u_2 k$.
+  $u_1 u_2$ is an integer, so from definitions we have that $k|(a-b)$ and so $a\equiv b \mod k$.
+\end{proof}
+
+
+\item[\textbf{2.1.7.}] If $a\in\zee$, prove that $a^2\not\equiv2\mod4$ and $a^2\not\equiv3\mod4$.
+
+\begin{proof}
+  Let $a\in\zee$.
+  By the Division Algorithm, $\exists n \in \zee \such a=2n$ or $a=2n+1$.
+  \par
+  If $a = 2n$, then $a^2 = 4n^2$ and $4|(a^2 - 0)$.
+  By definition, $a^2\equiv0\mod4$.
+  \par
+  If $a=2n+1$, then $a^2 = 4n^2 + 4n + 1 = 4(n^2 + n) + 1$.
+  $4|(a^2 - 1)$, so, by definition, $a^2\equiv1\mod4$.
+  \par
+  Therfore, either $a^2\equiv0\mod4$ or $a^2\equiv1\mod4$, so $a^2\not\equiv2\mod4$ and $a^2\not\equiv3\mod4$.
+\end{proof}
+
+
+\item[\textbf{2.1.11.}]  If $a,b\in\zee$ such that $a\equiv b\mod p$ for every positive prime $p$, prove that $a=b$.
+
+\begin{proof}
+Since $a\equiv b\mod p$ for every positive prime $p$, $a\equiv b\mod p_1$ where $p_1 > \abs{a-b}$.
+Remark (i) on page 9 of our text shows that every divisor of a \textit{nonzero} quotient $q \leq \abs{q}$, so if $a-b\neq 0$, $p_1 < a-b$.
+But, we picked $p_1$ to be greater than that (and there are infinitely many primes) so $a-b$ can't be nonzero.
+If $a-b = 0$, then $a=b$.
+\end{proof}
+
+
+\item[\textbf{2.1.14a.}] Let $n\in\zee^+$. Prove or disprove:  If $ab\equiv0\mod n$ then $a\equiv0\mod n$ or $b\equiv0\mod n$.
+
+\textit{Claim.} The statement is \textbf{false}.
+\par
+\textit{Counterexample.}  Let $a=6$, $b=8$, and $n=12$.\\
+$x\equiv0\mod n$ means that $n|x$ ($x \in \zee$), so we have
+$12|6 \cdot 8 = 48$, but $12 \nmid 6$ and $12 \nmid 8$.
+$\square$
+
+
+\item[\textbf{2.1.14b.}] Let $p$ be prime. Prove or disprove:  If $ab\equiv0\mod p$ then $a\equiv0\mod p$ or $b\equiv0\mod p$.
+
+\textit{Claim.} The statement is \textbf{true}.
+\begin{proof}
+  From the definition of congruence$\mod n$, we have, for any $x\in\zee$, $x\equiv0\mod n$ means that $n|x$.
+  So, ``If $ab\equiv0\mod p$ then $a\equiv0\mod p$ or $b\equiv0\mod p$.'' is equivalent to ``$p|ab \implies p|a \text{ or } p|b$.''
+  This is true by Theorem 1.5.
+\end{proof}
+
+
+\item[\textbf{2.2.9a.}] Find an element $[a]\in\zee_7$ such that every nonzero element of $\zee_7$ is a power of $[a]$. Justify your answer.
+
+Choose $[a] = [3]$.
+\begin{proof}
+by cases:
+\begin{itemize}
+\item[] $[1] = {[3]}^6$
+\item[] $[2] = {[3]}^2$
+\item[] $[3] = {[3]}^1$
+\item[] $[4] = {[3]}^4$
+\item[] $[5] = {[3]}^5$
+\item[] $[6] = {[3]}^3$
+\end{itemize}
+\end{proof}
+
+\end{itemize}
+\end{document}

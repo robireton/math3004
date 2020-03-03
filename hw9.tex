@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx,tikz,faktor}
+\usepackage{fancyhdr,enumerate}
+\usepackage{color,soul}
+\usepackage{marginnote}
+
+\setlength{\headheight}{28pt}
+\usepackage[top=1.0in, bottom=0.5in, left=0.75in, right=2.5in]{geometry}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH3004 HW \#9\\ Fall 2017}
+\rhead{\thepage}
+\chead{Rob Ireton}
+\title{Homework 9}
+
+\newcommand{\zee}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\arr}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\such}{\text{ s.t. }}
+\newcommand{\WTS}[1]{ \textcolor[rgb]{0,0.33,0}{$\blacktriangleright$ We want to show:  #1 $\blacktriangleleft$}  }
+
+\begin{document}
+	\begin{itemize}
+		\item[\textbf{ 3.1.38.}] Let $R$ be a ring and let $a\in R$. Prove that this set is a subring of $R$: \[A_R=\{r\in R;\; ar=0_R\}.\]  (This subring is called the (right) annihilator of $a$.)
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 4.2.15.}] Let $f(x),g(x)\in\,F[x]$, with $f(x)$ and $g(x)$ relatively prime. Prove that if $h(x)\in F[x]$ and $h(x) | f(x)$, then $h(x)$ and $g(x)$ are relatively prime.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 4.4.13a.}] If $f(x)$ and $g(x)$ are associates in $F[x]$, prove that they have the same roots in $F$.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 5.3.9.}] Show that $\faktor{\zee_2[x]}{(x^3+x+1)}$ is a field which contains all three roots of $x^3+x+1$.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 6.1.19.}] If $I$ is an ideal in $R$ and $S$ is a subring of $R$, prove that $I\cap S$ is an ideal in $S$.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 6.2.8.}] Let $R$ and $S$ be rings. Show that $\pi: R\times S\to R$ given by $\pi(r,s)=r$ is a surjective homomorphism whose kernel is isomorphic to $S$.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 6.2.12.}] Let $I$ be an ideal in a noncommutative ring $R$ such that $\forall\,a,b\in R$, $ab-ba\in I$. Prove that $\faktor{R}{I}$ is commutative.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 6.2.17.a.}] Suppose $I$ and $J$ are ideals in a ring $R$ and let \[f: R\to \faktor{R}{I}\times \faktor{R}{J}\text{ be given by } f(a)=(a+I, a+J).\] Prove that $f$ is a ring homomorphism.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 6.2.22.}] Let $f: R\to S$ be a ring homomorphism. Let $J$ be an ideal in $S$ and define \[I=\{r\in R;\; f(r)\in J\}.\] Prove that $I$ is an ideal of $R$ and that it contains the kernel of $f$.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{6.3.8.}] Give an example to show that the intersection of two prime ideals need not be prime. (Hint: we did such an example in class.)
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{6.3.3b.}] Let $F$ be a field and $p(x)\in F[x]$. Prove that $p(x)$ is irreducible in $F[x]$ if and only if the ideal $(p(x))$ is maximal in $F[x]$.
+		\begin{proof}
+			\dots
+		\end{proof}
+
+		\item[\textbf{ 7.1.12.}] Let $T$ be a nonempty set and $A(T)$ the set of all permutations of $T$. Show that $A(T)$ is a group under the operation of composition of functions. [Note: it says that $T$ is nonempty, but $T$ need not be finite!]
+		\begin{proof}
+			Let $f:T \to T, g:T \to T, h:T \to T$, $\in A(T)$.
+			\begin{itemize}
+				\item[\textbullet] Functions $f$ and $g$ are permutations, so they are bijective functions from $T$ to $T$. Compositions of bijective functions are themselves bijections \footnote{https://proofwiki.org/wiki/Composite\_of\_Bijections\_is\_Bijection} so $f\circ g$ is a bijective function from $T$ to $T$, and so a member of $A(T)$.
+				\item[\textbullet] Function $h$ is also bijective. Composition of mappings is associative \footnote{https://proofwiki.org/wiki/Composition\_of\_Mappings\_is\_Associative} so $f\circ(g\circ h) = (f\circ g)\circ h$ $\forall f, g, h \in A(T)$.
+				\item[\textbullet] Consider a function $e: T\to T$, such that $\forall t\in T$, $e(t) = t$. $f\circ e(t) = f(t) = e\circ f(t)$.
+				\item[\textbullet] Since $f\circ g$ is bijective (see above), it has an inverse \footnote{https://proofwiki.org/wiki/Bijective\_Relation\_has\_Left\_and\_Right\_Inverse}
+			\end{itemize}
+			Since $A(T)$ under composition of functions is closed, associative, has an identity element, and is invertible, it is a group.
+		\end{proof}
+
+		\item[\textbf{ 7.1.17a.}] Is $\Q$ with the operation $a*b=a+b+3$ a group? If yes, prove it; if no, give a counterexample.
+		\begin{proof}
+			Let $x, y, z \in \Q$.
+			\begin{itemize}
+				\item[\textbullet] $x*y$ means $x+y+3$. Addition in $\Q$ is closed, so $x+y+3 \in \Q$ means that $x*y \in \Q$.
+				\item[\textbullet] $x*(y*z)$ gives $x*(y+z+3)$ which gives $x+y+z+3+3$. Rearranging these elements of $\Q$ gives $(x+y+3)+z+3$ which is $(x*y)*z$.
+				\item[\textbullet] Let $e \in \Q = -3$. $x*e$ means $x+(-3)+3 = x = (-3)+x+3$, which is $e*x$.
+				\item[\textbullet] Let $d \in \Q = -x-6$. Then $x*d$ is $x+(-x-6)+3 = -3$, and $d*x$ is $(-x-6)+x+3 = -3$. Recall that $-3$ is $e$ from above.
+			\end{itemize}
+			Since $\Q$ with the operation $a*b=a+b+3$ is closed, associative, has an identity element, and has inverses for every element, it is a group.
+		\end{proof}
+
+	\end{itemize}
+\end{document}

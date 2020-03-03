@@ -1,0 +1,246 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx,tikz}
+\usepackage{fancyhdr,enumerate}
+\usepackage{color,soul}
+
+\setlength{\headheight}{28pt}
+\usepackage[top=1.0in, bottom=0.5in, left=0.75in, right=2.5in]{geometry}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH3004 HW \#5\\ Fall 2017}
+\rhead{\thepage}
+\chead{Rob Ireton}
+
+\title{Homework 5}
+
+\newcommand{\zee}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\arr}{\mathbb{R}}
+\newcommand{\such}{\text{ s.t. }}
+
+\begin{document}
+
+\begin{itemize}
+\item[\textbf{ 2.3.17.}] Prove that the product of two units in $\zee_n$ is also a unit.
+
+\begin{proof}
+  Let $a, b$ be units in $\zee_n$.
+  Then, $\exists a^{-1}, b^{-1} \in \zee_n \such a a{^-1} = 1, b b^{-1} = 1$.
+  ($x^{-1}$ notation justified by $\zee_n$ being a commutative ring with identity via Theorem 2.7 and the definitions of \textbf{unit} and \textbf{inverse} for elements of a ring with identity.)
+  If we multiply both sides of $a a{^-1} = 1$ by $b b^{-1}$ we see that $a a{^-1} b b^{-1} = 1 b b^{-1}$.
+  Theorem 2.7 establishes that multiplication in $\zee_n$ is associative and commutative, allowing the left-hand side to be written $a b a{^-1} b^{-1}$.
+  It also shows that $\zee_n$ is closed under multiplication, so $a{^-1} b^{-1} \in \zee_n$.
+  $b b^{-1} = 1$, so we have $(ab)u = 1$, $u \in \zee_n$.
+  By definition, $ab$ is a unit in $\zee_n$.
+\end{proof}
+
+\textit{An interesting corollary is that the inverse of the product of units is the product of those units' inverses.}
+
+\item[\textbf{ 3.1.17.}] Define a new multiplication on $\zee$ by the rule: $\forall a,b\in\zee$, $a\otimes b=0$. Show that with ordinary addition and this new multiplication, $\zee$ is a commutative ring.
+
+\begin{proof}
+  Let $a, b, c \in \zee$ under multiplication as above.
+  \par
+  It is well-established that the elements of $\zee$ satisfy axioms 1--5 under ordinary addition, so let's start with axiom 6.
+  \begin{enumerate}
+    \setcounter{enumi}{5}
+    \item $a\otimes b = 0$. $0 \in \zee$.
+    \item $a\otimes(b\otimes c) = a\otimes 0 = 0 = 0 \otimes c = (a\otimes b) \otimes c$.
+    \item $a\otimes (b+c) = 0 = 0 + 0 = a\otimes b + a \otimes c$. $(a+b)\otimes c = 0 = 0 + 0 = a \otimes c + b \otimes c$.
+    \item $a \otimes b = 0 = b \otimes a$.
+  \end{enumerate}
+\end{proof}
+
+\item[\textbf{3.3.15.}] Let $f:R\to S$ be a homomorphism of rings. Prove or disprove: If $r\in R$ is a zero divisor, then $f(r)\in S$ is a zero divisor.
+
+\textit{Claim}: statement above is true.
+\par
+\begin{proof}
+  $r$ is a zero divisor in $R$, so $r\neq 0_R$ and $\exists k \in R \such k \neq 0_R$ and $rk = 0_R$.
+  $f$ is a homomorphism of rings, so $f(rk) = f(r) f(k)$ (definition) and $f(0_R) = 0_S$ (Theorem 3.10).
+  Since $f(r) f(k) = 0_S$, $f(r)$ is, by definition, a zero divisor in $S$.
+\end{proof}
+
+\textit{questions:\\
+If $k \in R$ nonzero, is $f(k)$ always nonzero in $S$?\\
+\st{If $a = b$, does $f(a) = f(b)$?}}
+
+\item[\textbf{4.1.18.}] Let $\varphi:R[x]\to R$ be the map that sends every polynomial in $R[x]$ to its constant term (an element of $R$). Show that $\varphi$ is a surjective homomorphism of rings. (Note: this problem is similar to, but not the same as, 3.3.33 from previous homework.)
+
+\begin{proof}
+  Let $f(x), g(x)\in R[x]$ and let $n={\max}\{\deg(f), \deg(g)\}$. Then $\exists a_0,\dotsc, a_n,b_0\dotsc,b_n\in R$ such that
+  \begin{align*}
+    f(x) =& a_0 + a_1x + \dotsb + {a_n}x^n \text{ and}\\
+    g(x) =& b_0 + b_1x + \dotsb + {b_n}x^n \text{ and}\\
+    f(x) + g(x) =& (a_0 + b_0) + (a_1 + b_1)x + \dotsb + (a_n + b_n)x^n \text{ and}\\
+    f(x) g(x) =& \sum_{i=0}^{2n}\left( \sum_{j=0}^{i} {a_j}b_{i-j}\right) x^i\text{.}
+  \end{align*}
+  $\varphi(f(x)+g(x)) = a_0 + b_0 = \varphi(f(x)) + \varphi(g(x))$.
+  \par
+  The constant term of $f(x) g(x)$ corresponds to $i=0$ above, so $\varphi(f(x) g(x)) = a_0  b_0 = \varphi(f(x)) \varphi(g(x))$.
+  \par
+  Observe that for any $a_0$ in $R$, there are (infinitely many) functions $f$ in $R[x]$ of the form $a_0 + a_1 x + \dotsb + a_n x^n$ that $\varphi$ will map to $a_0$.
+  $\varphi$ is, therefore, surjective.
+  \par
+  So, $\varphi$ is a homomorphism since it preserves addition and multiplication, and it is surjective.
+\end{proof}
+
+\item[\textbf{4.1.21}] Let $h : R\to S$ be a homomorphism of rings and define a function $\bar{h} : R[x]\to S[x]$ by \[\bar{h}(a_0+a_1x+\dotsb+{a_n}x^n)=h(a_0)+h(a_1)x+\dotsb+h(a_n)x^n.\]
+For proofs (a.)\,--\,(d.) below: Let $\alpha, \beta \in R$, let $f(x), g(x)\in R[x]$ and let $n={\max}\{\deg(f), \deg(g)\}$. Then $\exists a_0,\dotsc, a_n,b_0\dotsc,b_n\in R$ such that
+\begin{align*}
+  f(x) =& a_0 + a_1x + \dotsb + {a_n}x^n\\
+  g(x) =& b_0 + b_1x + \dotsb + {b_n}x^n\\
+  f(x) + g(x) =& (a_0 + b_0) + (a_1 + b_1)x + \dotsb + (a_n + b_n)x^n\\
+  f(x) g(x) =& \sum_{i=0}^{2n}\left( \sum_{j=0}^{i} {a_j}b_{i-j}\right) x^i
+\end{align*}
+\begin{enumerate}[(a.)]
+  \item Prove that $\bar{h}$ is a homomorphism of rings.
+  \begin{proof} Observe that:
+    \begin{align*}
+      \bar{h}(f(x)+g(x))=&\bar{h}((a_0 + b_0) + (a_1 + b_1)x + \dotsb + (a_n + b_n)x^n)\\
+      =&h(a_0 + b_0) + h(a_1 + b_1)x + \dotsb + h(a_n + b_n)x^n\\
+      =&h(a_0) + h(b_0) + h(a_1) + h(b_1)x + \dotsb + h(a_n) + h(b_n)x^n\\
+      =&h(a_0) + h(a_1) + \dotsb + h(a_n)x^n + h(b_0) + h(b_1)x + \dotsb + h(b_n)x^n\\
+      =&\bar{h}(f(x))+\bar{h}(g(x))
+    \end{align*}
+    and that:
+    \begin{align*}
+      \bar{h}(f(x)g(x))=&\bar{h}\left( \sum_{i=0}^{2n}\left( \sum_{j=0}^{i} {a_j}b_{i-j}\right) x^i \right)\\
+      =&\sum_{i=0}^{2n} h \left( \sum_{j=0}^{i} {a_j}b_{i-j}\right) x^i\\
+      =&\left(\sum_{i=0}^{n} h \left( {a_i}\right) x^i\right) \left(\sum_{i=0}^{n} h \left( {b_i}\right) x^i\right)\\
+      =&\bar{h}(f(x))\bar{h}(g(x))
+    \end{align*}
+    Since $\bar{h}(f(x)+g(x))=\bar{h}(f(x))+\bar{h}(g(x))$ and $\bar{h}(f(x)g(x))=\bar{h}(f(x))\bar{h}(g(x))$, $\bar{h}$ is a homomorphism of rings.
+  \end{proof}
+
+  \item Prove that $\bar{h}$ is injective $\iff$ $h$ is injective.
+  \begin{proof}
+    If $\bar{h}$ is injective, then $\bar{h}(f(x))=\bar{h}(g(x)) \implies f(x)=g(x)$.
+    If $\bar{h}(f(x))=\bar{h}(g(x))$ then $h(a_i) = h(b_i)$ for all $i$ in $\{1,\dotsc,n\}$
+    and if $f(x)=g(x)$, then $a_i = b_i$ for all $i$ in $\{1,\dotsc,n\}$.
+    So, we have that $\bar{h}$ is injective implies that if $h(\alpha)=h(\beta)$ then $\alpha = \beta$.
+    That makes $h$ injective.
+    \par
+    If $h$ is injective, then $h(\alpha)=h(\beta) \implies \alpha = \beta$.
+    If $\alpha = \beta$, then $a_i = b_i$ for all $i$ in $\{1,\dotsc,n\}$, which means that $f(x)=g(x)$.
+    Since $h(\alpha)=h(\beta)$, $\bar{h}(f(x))=\bar{h}(g(x))$.
+    So, we have that $h$ injective implies that if $\bar{h}(f(x))=\bar{h}(g(x))$ then $f(x)=g(x)$.
+    This makes $\bar{h}$ injective.
+  \end{proof}
+
+  \item Prove that $\bar{h}$ is surjective $\iff$ $h$ is surjective.
+  \begin{proof}
+    If $\bar{h}$ is surjective, then for all elements of $S[x]$, there is an $f(x) \in R[x]$ such that $\bar{h}(f(x))$ equals that element.
+    Let $s(x) \in S[x] = s_0 + s_1 x + \dotsb + s_n x^n = \bar{h}(f(x))$ where $s_i \in S$.
+    Because of how $\bar{h}$ is defined, there must be $a_0, a_1, \dotsc, a_n \in R$ such that $h(a_0) = s_0$, etc.
+    Since this is true for any $s \in S$, so there must be an $a$ in $R$ for every $s \in S$ such that $h(a) = s$. So, $h$ is surjective.
+    \par
+    If $h$ is surjective, then $\forall s \in S$, $\exists r \in R \such h(r) = s$.
+    So, whatever $s(x) \in S[x]$ we compose from elements of $s$, there will be a corresponding $f(x) \in R[x]$.
+    Because of how $\bar{h}$ is defined, this means that $\forall s(x) \in S[x]$, $\exists f(x) \in R[x] \such \bar{h}(f(x)) = s(x)$.
+    In other words, $\bar{h}$ is surjective.
+  \end{proof}
+
+  \item Prove that $R\cong S \implies R[x]\cong S[x]$.
+  \begin{proof}
+    If $R$ isomorphic to $S$, then there is a bijective, homomorphic function that maps $R$ to $S$.
+    Parts (a.)\,--\,(c.) above showed that if $h$ is such a function, then $\bar{h}$ is a bijective, homomorphic function that maps $R[x]$ to $S[x]$.
+    This shows that $R[x]$ is isomorphic to $S[x]$.
+  \end{proof}
+\end{enumerate}
+
+\item[\textbf{4.2.8.}] Let $F$ a field, $f(x),g(x)\in F[x]$ not both zero, and $d(x)=\gcd(f(x),g(x))$.
+Prove that if $h(x)$ is a common divisor of $f(x)$ and $g(x)$ of highest possible degree,
+then $\exists c\in F$ such that $h(x)=c d(x)$.
+
+\begin{proof}
+  Since $d(x)$ is the \textsc{gcd} of $f(x)$ and $g(x)$, it is, by definition, the monic polynomial of highest degree that divides both $f(x)$ and $g(x)$.
+  If $h(x)$ divides $f(x)$ and $g(x)$ and is of highest possible degree, then it must have the same degree as $d(x)$.
+  From Theorem 4.7, we know that, since $h(x)|f(x)$, $\exists c_1 \in F \such f(x)=c_1h(x)$,
+  and, since $d(x)|f(x)$, $\exists c_2 \in F \such f(x)=c_2d(x)$.
+  So, $c_1h(x) = c_2d(x)$, or, $h(x)={c_1}^{-1}c_2d(x)$.
+  ${c_1}^{-1}c_2 \in F$, so, calling it $c$, $h(x)=c d(x)$.
+\end{proof}
+
+\item[\textbf{ 4.3.2.}] Prove that every nonzero $f(x)\in F[x]$ has a unique monic associate in $F[x]$.
+
+\begin{proof}
+  Being a polynomial in $F[x]$, excluding $0_F$, $f(x)$ has a leading coefficient; call it $a$.
+  If $a=1_F$, $f(x)$ is its own monic associate, differing from itself by a factor of $1_F$.
+  If $a \neq 1_F$, then $a^{-1}f(x)$ is $f(x)$'s monic associate because $a^{-1}a=1_F$ in field $F$.
+\end{proof}
+
+\item[\textbf{ 4.3.15.}] Let $p$ be a prime.
+\begin{enumerate}[(a.)]
+  \item By counting products of the form $(x+a)(x+b)$, show that there are exactly $\frac{(p^2+p)}{2}$ monic polynomials of degree 2 that are \textbf{not} irreducible in $\zee_p[x]$.
+  \par
+  In the case where $p=5$, we have these reducible quadratic polynomials: (duplicates struck through)
+  \par
+  \renewcommand{\arraystretch}{1.5}
+  \begin{tabular}{l | c c c c c}
+    mult.     & $(x+0)$  & $(x+1)$         & $(x+2)$         & $(x+3)$         & $(x+4)$         \\
+    \hline
+    $(x+0)$   & $x^2$    & \st{$x^2+x$}    & \st{$x^2+2x$}   & \st{$x^2+3x$}   & \st{$x^2+4x$}   \\
+    $(x+1)$   & $x^2+x$  & $x^2+2x+1$      & \st{$x^2+3x+2$} & \st{$x^2+4x+3$} & \st{$x^2+4$}    \\
+    $(x+2)$   & $x^2+2x$ & $x^2+3x+2$      & $x^2+4x+4$      & \st{$x^2+1$}    & \st{$x^2+x+3$}  \\
+    $(x+3)$   & $x^2+3x$ & $x^2+4x+3$      & $x^2+1$         & $x^2+x+4$       & \st{$x^2+2x+2$} \\
+    $(x+4)$   & $x^2+4x$ & $x^2+4$         & $x^2+x+3$       & $x^2+2x+2$      & $x^2+3x+1$      \\
+  \end{tabular}
+  Because of the symmetry resulting from multiplication in $\zee_p[x]$ being commutative, the number of unique products of $p$ pairs is $1 + 2 + \dotsb + p-1 + p = \frac{1}{2}p(p+1) = \frac{(p^2+p)}{2}$.
+  \begin{proof}
+    \dots
+  \end{proof}
+
+  \item Show that there are exactly $\frac{(p^2-p)}{2}$ monic irreducible polynomials of degree 2 in $\zee_p[x]$.
+  \par
+  To make it easier to see patterns in the table above, let's rewrite the factors $(x+a)$ as just $a$ and products $x^2+sx+p$ as $(s, p)$.
+  \par
+  \begin{tabular}{l | c c c c c}
+         & 0 & 1 & 2 & 3 & 4 \\
+    \hline
+    0   & (0, 0) & \st{(1, 0)} & \st{(2, 0)} & \st{(3, 0)} & \st{(4, 0)} \\
+    1   & (1, 0) &     (2, 1)  & \st{(3, 2)} & \st{(4, 3)} & \st{(0, 4)} \\
+    2   & (2, 0) &     (3, 2)  &     (4, 4)  & \st{(0, 1)} & \st{(1, 3)} \\
+    3   & (3, 0) &     (4, 3)  &     (0, 1)  &     (1, 4)  & \st{(2, 2)} \\
+    4   & (4, 0) &     (0, 4)  &     (1, 3)  &     (2, 2)  &     (3, 1)  \\
+  \end{tabular}
+  \par
+  To find the monic irreducible polynomials of degree 2 in $\zee_p[x]$, let's make a full list of possible polynomials using our (s, p) notation and then eliminate the reducible ones.
+  \par
+  \begin{tabular}{l | c c c c c}
+    all & 0 & 1 & 2 & 3 & 4 \\
+    \hline
+    0 & (0, 0) & (0, 1) & (0, 2) & (0, 3) & (0, 4) \\
+    1 & (1, 0) & (1, 1) & (1, 2) & (1, 3) & (1, 4) \\
+    2 & (2, 0) & (2, 1) & (2, 2) & (2, 3) & (2, 4) \\
+    3 & (3, 0) & (3, 1) & (3, 2) & (3, 3) & (3, 4) \\
+    4 & (4, 0) & (4, 1) & (4, 2) & (4, 3) & (4, 4) \\
+  \end{tabular}
+  \par
+  \begin{tabular}{l | c c c c c}
+    irreduc. & 0 & 1 & 2 & 3 & 4 \\
+    \hline
+    0 & \st{(0, 0)} & \st{(0, 1)} & (0, 2) & (0, 3) & \st{(0, 4)} \\
+    1 & \st{(1, 0)} & (1, 1) & (1, 2) & \st{(1, 3)} & \st{(1, 4)} \\
+    2 & \st{(2, 0)} & \st{(2, 1)} & \st{(2, 2)} & (2, 3) & (2, 4) \\
+    3 & \st{(3, 0)} & \st{(3, 1)} & \st{(3, 2)} & (3, 3) & (3, 4) \\
+    4 & \st{(4, 0)} & (4, 1) & (4, 2) & \st{(4, 3)} & \st{(4, 4)} \\
+  \end{tabular}
+  \par
+  Of the $p^2$ monic polynomials of degree 2 in $\zee_p[x]$, we ended up crossing out the $\frac{(p^2+p)}{2}$ reducible ones from part (a.).
+  $p^2 - \frac{(p^2+p)}{2} = \frac{(p^2-p)}{2}$, the count of monic irreducible polynomials of degree 2 in $\zee_p[x]$.
+  \begin{proof}
+    \dots
+  \end{proof}
+\end{enumerate}
+
+\item[\textbf{ 4.3.16.}] Prove that $p(x)$ is irreducible in $F[x]$ $\iff$ $\forall g(x)\in F[x]$, either $p(x)|g(x)$ or $p(x)$ is relatively prime to $g(x)$.
+
+\begin{proof}
+  \dots
+\end{proof}
+
+\end{itemize}
+
+\end{document}

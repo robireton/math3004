@@ -1,0 +1,285 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx,tikz}
+\usepackage{fancyhdr}
+\usepackage{color,soul}
+\usepackage{enumerate}
+\setlength{\headheight}{28pt}
+\usepackage[top=1.0in, bottom=0.5in, left=0.75in, right=2.5in]{geometry}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH3004 HW \#1\\ Fall 2017}
+\rhead{\thepage}
+\chead{Rob Ireton}
+
+\title{Homework 1}
+\newcommand{\zee}{\mathbb{Z}}
+\newcommand{\such}{\text{ s.t. }}
+
+\begin{document}
+
+\begin{itemize}
+\item[\textbf{1.1.6.}] Let $a$ be any integer and let $b$ and $c$ be positive integers.
+Suppose that when $a$ is divided by $b$, the quotient is $q$ and that when $q$ is divided by $c$, the quotient is $k$.
+Prove that: when $a$ is divided by $bc$, then the quotient is also $k$.
+
+\begin{proof}
+Since $q$ is the quotient when $a$ is divided by $b$, and $k$ is the quotient when $q$ is divided by $c$, by the Division Algorithm:
+\[\exists! r_1 \in \zee \text{ s.t. } a = b q + r_1 \text{, } 0 \leq r_1 < b \]
+\[\exists! r_2 \in \zee \text{ s.t. } q = c k + r_2 \text{, } 0 \leq r_2 < c \]
+Substituting, we get $a = b (c k + r_2) + r_1 = b c k + (b r_2 + r_1)$.
+We know that the integer $r_2$ is strictly less than the integer $c$, so $r_2 + 1 \leq c$.
+$b$ is a positive integer, so $b(r_2 + 1) \leq b c$.
+Since $b(r_2 + 1) = b r_2 + b$ and $r_1 < b$ we know that $b r_2 + r_1 < b r_2 + b \leq b c$.
+So, by the Division Algorithm, since $a = (b c)k + (b r_2 + r_1)$ with $0 \leq b r_2 + r_1 < c$, when $a$ is divided by $bc$, the quotient is $k$.
+\end{proof}
+
+
+
+\item[\textbf{1.1.8.}] Use the Division Algorithm to prove that every odd integer is either of the form $4k+1$ or $4k+3$ for some integer $k$.
+
+\begin{proof}
+Let $a$ be an integer.
+By the Division Algorithm, if $a$ is divided by 4, then $\exists! k,r \in \zee$ s.t. $a = 4 k + r$, $0 \leq r < 4$. So, $r \in \{0, 1, 2, 3\}$.
+Cases: ($k_1, k_2, k_3, k_4 \in \zee$)
+\begin{itemize}
+\item[($r = 0$)] $a = 4 k + 0 = 2 k_1 \implies a \text{ is even}$.
+\item[($r = 1$)] $a = 4 k + 1 = 2 k_2 + 1 \implies a \text{ is odd}$.
+\item[($r = 2$)] $a = 4 k + 2 = 2 k_3 \implies a \text{ is even}$.
+\item[($r = 3$)] $a = 4 k + 3 = 2 k_4 + 1 \implies a \text{ is odd}$.
+\end{itemize}
+So, by contrapositive, since $a$ not of the form $4 k + 1$ or $4 k + 3$ (that is, of the form $4 k$ or $4 k + 2$) implies that $a$ is not odd, we can conclude that $a$ odd implies that $a$ must be of the form $4 k + 1$ or $4 k + 3$.
+\end{proof}
+
+
+
+\item[\textbf{1.1.10.}] Let $n$ be a positive integer and $a,c\in \zee$. Prove that: $a$ and $c$ leave the same remainder when divided by $n$ $\iff$ $\exists k\in \zee$ such that $a-c=nk$.
+
+\begin{proof}
+From the Division Algorithm, we know that:
+\[\exists! q_1, r_1 \in \zee \such a = n q_1 + r_1, 0 \leq r_1 < n\]
+\[\exists! q_2, r_2 \in \zee \such c = n q_2 + r_2, 0 \leq r_2 < n\]
+from which follows:
+\[a - c = (n q_1 + r_1) - (n q_2 + r_2) = n (q_1 - q_2) + (r_1 - r_2), 0 \leq \lvert r_1 - r_2 \rvert\ < n\]
+
+If $a$ and $c$ leave the same remainder when divided by $n$, then $r_1 = r_2$ and $r_1 - r_2 = 0$.
+So $a - c = n (q_1 - q_2)$ and $\exists k\in \zee$ s.t. $a-c=nk$.
+That $k$ is $q_1 - q_2$.
+\par
+Suppose $\exists k \in \zee \such a-c=nk$.
+Then $a-c = nk = n (q_1 - q_2) + (r_1 - r_2)$.
+Rearranging gives $(r_1 - r_2) = nk - n (q_1 - q_2) = n(k - q_1 + q_2)$.
+Remember that $\lvert r_1 - r_2 \rvert\ < n$. For the equation above in $\zee$ to be true, $(k - q_1 + q_2) = 0$.
+Which means that $r_1 - r_2$ is also zero, so $a$ and $c$ must leave the same remainder when divided by $n$.
+\par
+Since
+$a$ and $c$ leave the same remainder when divided by $n$ $\implies$ $\exists k\in \zee$ such that $a-c=nk$, and
+$\exists k\in \zee$ such that $a-c=nk$ $\implies$ $a$ and $c$ leave the same remainder when divided by $n$; then
+$a$ and $c$ leave the same remainder when divided by $n$ $\iff$ $\exists k\in \zee$ such that $a-c=nk$.
+\end{proof}
+
+
+
+\item[\textbf{1.2.4b.}] If $a|b$ and $a|c$, prove that:  $\forall r,t\in \zee$, $a|(br+ct)$.
+
+\begin{proof}
+Since $a|b$ and $a|c$, $\exists n_1, n_2 \in \zee$ s.t. $b = a n_1$ and $c = a n_2$.
+Substituting, we see that $(br+ct) = (a n_1 r + a n_2 t) = a(n_1 r + n_2 t)$.
+Clearly, $a|a(n_1 r + n_3 t) \forall r,t\in \zee$, so $a$ must divide $(br+ct) \forall r,t\in \zee$ whenever $a$ divides both $b$ and $c$.
+\end{proof}
+
+
+
+\item[\textbf{1.2.5.}] If $a$ and $b$ are nonzero integers such that $a|b$ and $b|a$, prove that $a=\pm b$.
+
+\begin{proof}
+Since $a|b$ and $b|a$, $\exists n_1, n_2 \in \zee$ s.t. $b = a n_1$ and $a = b n_2$.
+Substituting gives $a=a n_1 n_2$.
+Because $a$ is nonzero, we can divide through and see that $n_1 n_2 = 1$.
+$n_1$ and $n_2$ are integers, so if their product is $1$, then they can only have values ${\pm}1$.
+Since $a = b n_2$ and $n_2 = {\pm}1$, it follows that $a = {\pm}b$.
+\end{proof}
+
+
+
+\item[\textbf{1.2.13.}] Suppose that $a, b, q$, and $r$ are integers such that $a=bq+r$.
+
+
+\begin{enumerate}[(a.)]
+\item Prove that every common divisor $c$ of $a$ and $b$ is also a common divisor of $b$ and $r$.  (Hint in book.)
+
+\begin{proof}
+A common divisor $c \in \zee$ of $a$ and $b$ divides both $a$ and $b$, so $\exists n_1, n_2 \in \zee$ s.t. $a = c n_1$ and $b = c n_2$.
+Substituting for $a$ and $b$ in $a=bq+r$ gives $c n_1 = c n_2 q + r$, or $r = c n_1 - c n_2 q = c(n_1 - n_2 q)$.
+$(n_1 - n_2 q)$ is an integer; so, in addition to dividing $b$, $c$ also divides $r$, and thus is a common divisor of both.
+\end{proof}
+
+
+
+\item Prove that every common divisor of $b$ and $r$ is also a common divisor of $a$ and $b$.
+
+\begin{proof}
+A common divisor $c \in \zee$ of $b$ and $r$ divides both $b$ and $r$, so $\exists n_1, n_2 \in \zee$ s.t. $b = c n_1$ and $r = c n_2$.
+Substituting for $b$ and $r$ in $a=bq+r$ gives $a = c n_1 q + c n_2 = c(n_1  q - n_2)$.
+$(n_1  q - n_2)$ is an integer; so, in addition to dividing $b$, $c$ also divides $a$, and thus is a common divisor of both.
+\end{proof}
+
+
+
+\item Prove that $\gcd(a,b)=\gcd(b,r)$.
+\begin{proof}
+From (a.) we know that every common divisor of $a$ and $b$ is also a common divisor of $b$ and $r$.
+From (b.) we know that every common divisor of $b$ and $r$ is also a common divisor of $a$ and $b$.
+Therefore, the set of common divisors of $a$ and $b$ is the same as the set of common divisors of $b$ and $r$.
+The greatest member of this set must be the greatest common divisor of both ($a$ and $b$) and ($b$ and $r$).
+\end{proof}
+\end{enumerate}
+
+
+
+\item[\textbf{1.2.18.}] If $c>0$, prove that $\gcd(ca,cb)=c\cdot \gcd(a,b)$. (Hint in book.)
+
+\begin{proof}
+Let $\gcd(a,b)=d$.
+Then $d|a$, $d|b$.
+$c>0$, so $cd|ca$ and $cd|cb$.
+Let $\gcd(ca,cb)=k$.
+Then $k|ca$, and $k|cb$.
+Since $cd$ also divides $ca$ and $cb$, $cd|k$ by corollary 1.3.
+\par
+Since $\gcd(a,b)=d$, $\exists u,v \in \zee \such au+bv=d$.
+Again, $c>0$ so $cau+cav=cd$.
+$k|ca$, and $k|cb$ so $\exists n_1, n_2 \in \zee \such ca={n_1}k$, $cb={n_2}k$.
+Substitution for $ca$ and $cb$ gives ${n_1}ku+{n_2}kv=k({n_1}u+{n_2}v)=cd$.
+So, $k|cd$.
+\par
+Since $k|cd$ and $cd|k$, we know from exercise 1.2.5 that $k = \pm cd$, but since $k$, $c$, and $d$ are all positive integers, $k = cd$.
+\textsc{iow}, $\gcd(ca,cb) = c \cdot \gcd(a,b)$.
+\end{proof}
+
+
+
+\item[\textbf{1.2.21.}] Prove that $\gcd(a,\gcd(b,c))=\gcd(\gcd(a,b),c)$.
+\par\textit{Note:} Exercise 1.2.3 shows that $a|b \text{ and } b|c \implies a|c$. Proof also makes frequent use of corollary 1.3.
+
+\begin{proof}
+Let $d_1 = \gcd(a,\gcd(b,c))$. Then $d_1|a$ and $d_1|\gcd(b,c)$. So $d_1|b$ and $d_1|c$.
+Let $d_2 = \gcd(\gcd(a,b),c)$. Then $d_2|\gcd(a,b)$ and $d_2|c$. So $d_2|a$ and $d_2|b$.
+\par
+Since $d_1|a$ and $d_1|b$, then $d_1|\gcd(a,b)$.
+Since $d_1|\gcd(a,b)$ and $d_1|c$, then $d_1|d_2$.
+\par
+Since $d_2|b$ and $d_2|c$, then $d_2|\gcd(b,c)$.
+Since $d_2|a$ and $d_2|\gcd(b,c)$, then $d_2|d_1$.
+\par
+With $d_1|d_2$ and $d_2|d_1$ we have, from exercise 1.2.5 above that $d_1 = \pm d_2$.
+Given that \textsc{gcd}s are positive, we have $d_1 = \gcd(a,\gcd(b,c)) = d_2 = \gcd(\gcd(a,b),c)$.
+\end{proof}
+
+
+
+\item[\textbf{1.2.23.}] Use induction to show that if $\gcd(a,b)=1$, then $\forall$ integers $n>1$, $\gcd(a,b^n)=1$.
+
+\begin{proof}
+Suppose $\gcd(a,b^n) = 1$. It follows that, $\forall d \in \zee$, $d > 1 \implies d \nmid a$ or $d \nmid b^n$.
+\st{If $d \nmid b^n$ then $d \nmid b b^n$ either, so $d \nmid b^{n+1}$.}
+So, $\gcd(a,b^n) = 1 \implies \gcd(a,b^{n+1})=1$. Take this as our induction hypothesis.
+\par
+Suppose $\gcd(a,b)=1$. This is the same as $\gcd(a,b^n) = 1$ with $n=1$.
+From this and our induction hypotheses, we can conclude that $\gcd(a,b)=1 \implies \forall$ integers $n>1$, $\gcd(a,b^n)=1$.
+\end{proof}
+
+
+
+\item[\textbf{1.3.6.}] If $p>5$ is prime and $p$ is divided by 10, show that the remainder is 1, 3, 7, or 9.
+
+\begin{proof}
+By the Division Algorithm, when $p$ is divided by 10 $\exists q, r \in \zee$ s.t. $p = 10 q + r$, $0 \leq r < 10$.
+Observe that $10 = 2 \cdot 5$.
+For each case when remainder $r$ is not 1, 3, 7, or 9:
+\begin{itemize}
+\item[($r = 0$)] $p=10q+0 = 2 (5 q)$
+\item[($r = 2$)] $p=10q+2 = 2 (5 q + 1)$
+\item[($r = 4$)] $p=10q+4 = 2 (5 q + 2)$
+\item[($r = 5$)] $p=10q+5 = 5 (2 q + 1)$
+\item[($r = 6$)] $p=10q+6 = 2 (5 q + 3)$
+\item[($r = 8$)] $p=10q+8 = 2 (5 q + 4)$
+\end{itemize}
+So, in every case where $r$ is not 1, 3, 7, or 9, $p$ can not be a prime greater than five since it would have a divisor other than ${\pm}1$ and ${\pm}p$, namely, 2 or 5.
+Thus, by the contrapositive, If $p>5$ is prime and $p$ is divided by 10, the remainder must be 1, 3, 7, or 9.
+\end{proof}
+
+
+
+\item[\textbf{1.3.16.}] Prove that $\gcd(a,b)=1$ $\iff$ there is no prime $p$ such that $p|a$ and $p|b$.
+
+\begin{proof}
+Let $\gcd(a,b)=1$. All symbols will refer to elements of $\zee \ge 0$. Values that could be less than zero will be replaced by their absolute value.
+\par
+Assume to the contrary that there is a prime $p$ such that $p|a$ and $p|b$.
+That means that $p$ is a common factor of $a$ and $b$.
+But, if $p$ is prime, then it must be greater than one.
+This contradicts the condition that $\gcd(a,b)=1$, so a prime $p$ that divides $a$ and $b$ cannot exist if $\gcd(a,b)=1$.
+\par
+Now suppose that there is no prime $p \such p|a$ and $p|b$.
+The Fundamental Theorem of Arithmetic allows us to characterize $a$ and $b$ as
+\[a=p_{a_1} p_{a_2} \cdots p_{a_k} \text{ where } p_{a_i} \text{ are primes.}\]
+\[b=p_{b_1} p_{b_2} \cdots p_{b_j} \text{ where } p_{b_i} \text{ are primes.}\]
+Since there is no prime $p \such p|a$ and $p|b$, the sets $P_a = \{p_{a_1}, p_{a_2},\\ \dots, p_{a_k}\}$ and $P_b = \{p_{b_1}, p_{b_2}, \dots, p_{b_j}\}$ are disjoint.
+Compare everything that divides $a$: $\{0, 1, P_a, a\}$, with everything that divides $b$: $\{0, 1, P_b, b\}$, looking for common divisors.
+Neither $a$ nor $b$ are common divisors.
+$a \neq b$ because prime factorizations are unique, and, as already established, theirs are different.
+None of the elements of $P_a$ or $P_b$ are common divisors because they have no elements in common.
+So, the only common divisors of $a$ and $b$ are zero and one.
+The greatest of these is one, so $\gcd(a,b)=1$.
+\end{proof}
+
+\end{itemize}
+
+
+
+
+%
+%
+%
+%\newpage
+%
+%\begin{center}
+%\textbf{This page for instructor use only!}
+%\end{center}
+%\vspace{0.5in}
+%
+%\begin{center}
+%\scalebox{1.3}{
+%\renewcommand*{\arraystretch}{1.6}
+%\begin{tabular}{|c |c |c| }
+%\hline
+%Problem& $1^{st}$ Submit& Resubmit\\
+%\hline
+%1.1.6& & \\
+%\hline
+%1.1.8& & \\
+%\hline
+%1.1.10& & \\
+%\hline
+%1.2.4 & & \\
+%\hline
+%1.2.9& & \\
+%\hline
+%1.2.11b& & \\
+%\hline
+%1.2.16 & & \\
+%\hline
+%1.2.20& & \\
+%\hline
+%1.2.22& & \\
+%\hline
+%\end{tabular}}
+%\end{center}
+%
+%\begin{flushleft}
+%\textbf{Comments:}
+%\end{flushleft}
+
+
+\end{document}

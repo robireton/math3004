@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx,tikz}
+\usepackage{fancyhdr}
+
+\setlength{\headheight}{28pt}
+\usepackage[top=1.0in, bottom=0.5in, left=0.75in, right=2.5in]{geometry}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MATH3004 HW \#3\\ Fall 2017}
+\rhead{\thepage}
+\chead{Rob Ireton}
+
+\title{Homework 3}
+\newcommand{\zee}{\mathbb{Z}}
+\newcommand{\st}{\text{ s.t. }}
+
+\begin{document}
+
+\begin{itemize}
+\item[\textbf{1.3.23.}] Prove that for any $a,b\in\zee$, $a|b \iff a^2|b^2$.
+
+\begin{proof}
+  Let $a,b\in\zee$ with $a\neq0$.
+  \par
+  If $a|b$, then $\exists c\in\zee\st b=ca$.
+  Squaring both sides gives $b^2 = c^2 a^2$.
+  $c^2 \in\zee$, so $a^2|b^2$.
+  \par
+  Suppose that $a=p_1^{r_1}p_2^{r_2}\dotsb p_k^{r_k}$ and $b=p_1^{s_1}p_2^{s_2}\dotsb p_k^{s_k}$, where $p_1,\dotsc, p_k$ are distinct primes and each $r_i,s_i\ge0$.
+  Then $a^2=p_1^{2r_1}p_2^{2r_2}\dotsb p_k^{2r_k}$ and $b^2=p_1^{2s_1}p_2^{2s_2}\dotsb p_k^{2s_k}$.
+  If $a^2|b^2$, then, by exercise 1.3.19, $\forall i,\,2r_i\le 2s_i$.
+  It follows that $\forall i,\,r_i\le s_i$, so, again by 1.3.19, $a|b$.
+  \par
+  Since $a|b \implies a^2|b^2$ and $a^2|b^2 \implies a|b$, $a|b \iff a^2|b^2$.
+\end{proof}
+
+\item[\textbf{2.1.15.}] Let $a,n\in\zee$ and assume $\gcd(a,n)=1$. Prove that $\exists b\in\zee$ such that $ab\equiv1\mod n$.
+
+\begin{proof}
+If $\gcd(a,n)=1$, then by theorem 1.2, $\exists b, k \in \zee \st 1 = ab + nk$.
+Rearranging gives $ab-1=-kn$.
+Since $-k$ is an integer, $n|ab-1$, which means that $ab\equiv1\mod n$;
+\end{proof}
+
+\item[\textbf{2.1.21a.}] Prove that for every positive integer $n$, $10^n\equiv 1\mod 9$.
+
+\begin{proof}
+Suppose that $10^n\equiv 1\mod 9$ for some positive integer $n$.
+That means that 9 divides $10^n - 1$, or that $\exists c \in \zee \st 10^n - 1 = 9c$.
+Rearranging and multiplying through by 10 gives $10(10^n)=90c+10$.
+Rearranging some more gives $10^{n+1}=90c+9+1=9(10c+1)+1$ or $10^{n+1}-1=9(10c+1)$.
+$(10c+1)$ is an integer, so 9 divides $10^{n+1}-1$.
+IOW, $10^{n+1}\equiv 1\mod 9$.
+\par
+Having shown that $10^n\equiv 1\mod 9 \implies 10^{n+1}\equiv 1\mod 9$, we need only observe that $10^1\equiv1\mod9$ (\small{$n=1$; $10-1=9$; $9|9$}).
+So, by induction, it follows that $\forall n>0 \in \zee$, $10^n\equiv 1\mod 9$.
+\end{proof}
+
+\item[\textbf{2.2.13.}] Prove or disprove: If $[a]\odot[b]=[a]\odot[c]$ and $[a]\ne 0$ in $\zee_n$, then $[b]=[c]$.
+%ToDo: disproved wrong statement - redo this
+\textit{Claim}: statement above is false.
+\par
+\textit{Counterexample}: In $\zee_{14}$, Let $[a]=[6]$, $[b]=[1]$, and $[c]=[8]$.
+Observe that $[6]\odot[1]=[6]$, $[6]\odot[8]=[6]$, but $[1]\neq[8]$.
+$\square$
+
+\item[\textbf{2.2.14c.}] Let $p$ be a prime. Prove that the only solutions of $x^2+x=[0]$ in $\zee_p$ are $[0]$ and $[p-1]$.
+
+\begin{proof}
+
+\end{proof}
+
+\item[\textbf{2.3.5.}] Prove: If $a$ is a unit and $b$ is a zero divisor in $\zee_n$, then $ab$ is a zero divisor.
+
+\begin{proof}
+Since $a$ is a unit in $\zee_n$, $\exists c \in \zee_n \st ac=1$.
+Since $b$ is a zero divisor in $\zee_n$, $\exists d \neq 0 \in \zee_n \st bd=0$.
+Then, $(ac)(bd) = (1)(0) = 0$, and $\exists z \in \zee_n \st (ab)z = 0$; specifically, $z=cd$.
+As long as $ab\neq0$, $ab$ is a zero divisor.
+Suppose to the contrary that $ab=0$.
+Then $(ab)c = 0 = (ac)b$.
+We already know that $ac=1$ so $(ac)b=b$, giving $b=0$.
+But $b$ is a zero divisor, so it is distinct from zero.
+This contradiction forces us to conclude that $ab\neq0$.
+\par
+Since $ab\neq0$ and $\exists z \in \zee_n \st (ab)z = 0$, $ab$ is a zero divisor.
+\end{proof}
+
+\item[\textbf{2.3.9a.}] Prove: If $a$ is a unit in $\zee_n$, then $a$ is not a zero divisor.
+
+\begin{proof}
+Suppose to the contrary that a unit $a$ in $\zee_n$ is also a zero divisor in $\zee_n$.
+Since $a$ is a unit, $\exists b \in \zee_n \st ab=1$.
+Since $a$ is a zero divisor, $\exists c \neq 0 \in \zee_n \st ac=0$.
+But if $ac=0$, then if we multiply both sides by $b$ we get that $bac = b0 = 0$.
+Multiplication in $\zee_n$ is commutative (Theorem 2.7) so $ba = ab = 1$.
+This leaves us with $c=0$ but for $a$ to be a zero divisor, $c\neq0$.
+This contradiction forces us to conclude that, if $a$ is a unit in $\zee_n$, then it can not also be a zero divisor.
+\end{proof}
+
+\item[\textbf{2.3.16.}] Suppose $a,b\in\zee_n$ and $a,b\ne0$. Prove that if $ax=b$ has no solutions in $\zee_n$, then $a$ is a zero divisor.
+
+\begin{proof}
+\dots
+\end{proof}
+
+\item[\textbf{3.1.6b.}] Let $k$ be a fixed integer. Show that the set of all multiples of $k$ is a subring of $\zee$.
+
+\begin{proof}
+Let $K = \{k n; n \in \zee \}$ and let $a, b \in K$.
+Then $\exists n_1, n_2 \in \zee$ such that $a=kn_1$ and $b=kn_2$.
+Observe that:
+\begin{enumerate}
+  \item $(a-b) = k n_1 - k n_2 = k (n_1 - n_2)$. $(n_1 - n_2) \in \zee$, so $(a-b) \in K$.
+  \item $ab = (k n_1)(k n_2) = k(k n_1 n_2)$. $(k n_1 n_2) \in \zee$, so $ab \in K$.
+\end{enumerate}
+Since $K$, which is a subset of $\zee$ and has the same addition and multiplication operations, is closed under subtraction and multiplication, the Subring Test shows that $K$, the set of all multiples of $k$, is a subring of $\zee$.
+\end{proof}
+
+\item[\textbf{3.1.7.}] Let $K\subset \mathbb{R}$ be the set $K=\{n\sqrt{2}; n\in\zee \}$. Prove that $K$ satisfies Axioms 1--5 of the ring definition, but is not a ring.
+
+\begin{proof}
+Let $a,b,c \in K$, then $\exists n_1, n_2, n_3 \in \zee$ such that $a=n_1\sqrt{2}, b=_2\sqrt{2}, c=n_3\sqrt{2}$.
+Observe that:
+\begin{enumerate}
+  \item $a+b = n_1\sqrt{2} + n_2\sqrt{2} = (n_1 + n_2)\sqrt{2} \in K$
+  \item $a+(b+c) = n_1\sqrt{2} + (n_2\sqrt{2} + n_3\sqrt{2}) = n_1\sqrt{2} + (n_2 + n_3)\sqrt{2} = (n_1 + n_2 + n_3)\sqrt{2} =
+  (n_1 + n_2)\sqrt{2} + n_3\sqrt{2} = (n_1\sqrt{2} + n_2\sqrt{2}) + n_3\sqrt{2} = (a+b)+c$
+  \item $a+b = n_1\sqrt{2} + n_2\sqrt{2} = n_2\sqrt{2} + n_1\sqrt{2} = b+a$
+  \item Let $0_K = 0\sqrt{2}$. $\forall n \in \zee$, $n\sqrt{2} + 0\sqrt{2} = n\sqrt{2} = 0\sqrt{2} + n\sqrt{2}$. So, $\forall a \in K$, $a+0_K = a = 0_K + a$.
+  \item If $a + x_K = 0_K$. Then $x_K = 0_K - a$ and $x_\zee = 0\sqrt{2} - n_1 \sqrt{2} = -n_1\sqrt{2}$. So, $\forall a \in K$, $a + x_K = 0_K$ has a solution; namely, $-a$.
+\end{enumerate}
+However, $(2 \sqrt{2}) (3 \sqrt{2}) = 12$.
+$2 \sqrt{2}, 3 \sqrt{2} \in K$ but $12 \not\in K$.
+$K$ is not closed under multiplication, so it is not a ring.
+\end{proof}
+
+\item[\textbf{3.1.12.}] Prove that $\zee[i]=\{a+bi; a,b\in\zee \}$ is a subring of $\mathbb{C}$.
+
+\begin{proof}
+Let $x, y \in \zee[i]$; then $\exists a_1, a_2, b_1, b_2 \in \zee \st x = a_1 + b_2 i, y = a_2 + b_2 i$.
+\par
+$x-y = (a_1 + b_1 i) - (a_2 + b_2 i) = (a_1 - a_2) + (b_1 - b_2)i$.
+$(a_1 - a_2), (b_1 - b_2) \in \zee$, so $x-y \in \zee[i]$.
+\par
+$xy = (a_1 + b_1 i) (a_2 + b_2 i) = a_1 a_2 + a_1 b_2 i + a_2 b_1 i - b_1 b_2 = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + a_2 b_1)i$.
+$(a_1 a_2 - b_1 b_2), (a_1 b_2 + a_2 b_1) \in \zee$, so $xy \in \zee[i]$.
+\par
+Since $Z[i]$, which is a subset of $\mathbb{C}$ and has the same addition and multiplication operations, is closed under subtraction and multiplication, the Subring Test shows that $\zee[i]$ is a subring of $\mathbb{C}$.
+\end{proof}
+
+\end{itemize}
+
+\end{document}
